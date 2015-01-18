@@ -49,8 +49,9 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
         aMonsters[2]=new String("Ogre");
         aMonsters[3]=new String("Assassin");
         mainListView= (ListView) findViewById(R.id.quest_lister);
-        mArrayAdapter= new ArrayAdapter(this, android.R.layout.simple_list_item_1, questList);
+        mArrayAdapter= new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, questList);
         mainListView.setAdapter(mArrayAdapter);
+        mainListView.setOnClickListener(this);
         picker= new Random();
 
 
@@ -59,8 +60,9 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
         if (v==generator) {
             questList.add(aMonsters[picker.nextInt(4)]);
             mArrayAdapter.notifyDataSetChanged();
+            selecter.setEnabled(true);
         }
-    else if (v==selecter) {
+    else if (v==mainListView) {
         }
     }
 
