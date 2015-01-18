@@ -3,6 +3,7 @@ package com.unkani.placeholder;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -10,10 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-/**
- * Created by unkani on 1/17/2015.
- */
+
 public class QuestsActivity extends ActionBarActivity implements View.OnClickListener {
     TextView questsTextView;
     ListView mainListView;
@@ -21,7 +21,8 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
     ArrayList questList;
     Button generator;
     Button selector;
-
+    Random picker;
+    String[] aMonsters = { "Bat", "Troll", "Ogre", "Assassin" };
 
 
     @Override
@@ -40,7 +41,22 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
         generator= (Button) findViewById(R.id.quest_generator);
         generator.setOnClickListener(this);
         selector.setEnabled(false);
-        String aMonsters[]={"Bat","Troll","Ogre","Assassin"};
+
+        mainListView = (ListView) findViewById(R.id.quest_lister);
+
+/*
+        mainListView.setAdapter(mArrayAdapter);
+*/
+
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+        picker= new Random();
 
 
 // get a branch kk
@@ -51,9 +67,19 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
     }
     public void onClick(View v) {
         if (v==generator) {
-        }
-    else if (v== selector) {
+/*
+            questList.add(aMonsters[picker.nextInt(3)]);
+*/
+            for(int i = 0; i < 3; i++) {
+                questList.add(aMonsters[i]);
+            }
 
+            mArrayAdapter= new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, questList);
+
+            mArrayAdapter.notifyDataSetChanged();
+            selector.setEnabled(true);
+        }
+        else if (v==mainListView) {
         }
     }
 
