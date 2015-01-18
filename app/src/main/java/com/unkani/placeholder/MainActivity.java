@@ -59,8 +59,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        mainTextView = (TextView) findViewById(R.id.main_textview);
-        mainTextView.setText("Set in Java!");
+
         mainButton = (Button) findViewById(R.id.quests_button);
         mainButton.setOnClickListener(this);
         adderCount = (TextView) findViewById(R.id.adderCount);
@@ -215,6 +214,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 //        TextView txtDateTime = (TextView) findViewById(R.id.txtDateTime);
         TextView txtCounter = (TextView) findViewById(R.id.txtCounter);
 //        txtDateTime.setText(time);
-        txtCounter.setText("Number of steps: " + counter);
+        txtCounter.setText(counter);
     }
 }

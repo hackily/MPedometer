@@ -7,41 +7,38 @@
     >
 
 
+    <!-- Set OnClickListener to trigger result when pressed -->
     <TextView
-        android:id="@+id/main_textview"
+        android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/textview"
-
-    />
-
-    <!-- Set OnClickListener to trigger result when pressed -->
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20pt"
+        />
     <Button
         android:id="@+id/quests_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:text="@string/quests_button"
-    />
+        android:layout_gravity="center_horizontal" />
     <Button
         android:id="@+id/characterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+
         android:text="@string/characterText"
-    />
+        android:layout_gravity="center_horizontal" />
     <Button
         android:id="@+id/History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+
         android:text="@string/History"
-    />
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -52,35 +49,47 @@
             android:id="@+id/adderCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+
             android:text="@string/count"
         />
         <Button
             android:id="@+id/adder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+
+
             android:text="@string/adder"
         />
         <!-- Closing tag for the horizontal nested layout -->
     </LinearLayout>
-    <TextView
-        android:id="@+id/txtCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/txtCounter"
-    />
+
     <Button
         android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+
         android:text="@string/clear"
-    />
+        android:layout_gravity="right" />
+
+    <TextView
+        android:id="@+id/counterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/counterText"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12pt"
+        />
+    <TextView
+        android:id="@+id/txtCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/txtCounter"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20pt"
+        />
 
 </LinearLayout>
