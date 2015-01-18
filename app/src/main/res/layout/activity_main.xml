@@ -26,31 +26,22 @@
         android:layout_marginTop="20dp"
         android:text="@string/quests_button"
     />
-<!--    <Button
-        android:id="@+id/bind"
+    <Button
+        android:id="@+id/characterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/bind"
+        android:text="@string/characterText"
     />
     <Button
-        android:id="@+id/unbind"
+        android:id="@+id/History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/unbind"
+        android:text="@string/History"
     />
-    <Button
-        android:id="@+id/getServiceStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/getServiceStatus"
-    />-->
-
 
     <LinearLayout
         android:layout_width="wrap_content"

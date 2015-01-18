@@ -22,17 +22,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     TextView mainTextView;
     Button mainButton;
-
     TextView adderCount;
     Button adder;
     Button clear;
+    Button history;
+    Button character;
 
     String poop = "8";
     private static final String PREFS = "prefs";
     private static final String CHAR_NAME = "";
     private static final String COUNT = "0";
-    private static final String STR = "";
-    private static final String Steps = "";
+
+
     SharedPreferences mSharedPreferences;
 
     private int addCount = 0;
@@ -54,16 +55,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         mainTextView.setText("Set in Java!");
         mainButton = (Button) findViewById(R.id.quests_button);
         mainButton.setOnClickListener(this);
-
-
         adderCount = (TextView) findViewById(R.id.adderCount);
-
-
 
         adder = (Button) findViewById(R.id.adder);
         adder.setOnClickListener(this);
         clear = (Button) findViewById(R.id.clear);
         clear.setOnClickListener(this);
+        history = (Button) findViewById(R.id.History);
+        history.setOnClickListener(this);
+        character = (Button) findViewById(R.id.characterText);
+        character.setOnClickListener(this);
+
 
         displayWelcome();
         intent = new Intent(this, CounterService.class);
@@ -91,18 +93,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             adderCount.setText(String.valueOf(addCount));
         }
         else if (v == clear){
-/*            mSharedPreferences = getSharedPreferences(PREFS, MODE_PRIVATE);
-            //Clears the preferences file.
-            mSharedPreferences.edit().clear().commit();
-            SharedPreferences.Editor.clear();*/
-
             getApplicationContext().getSharedPreferences(PREFS, 0).edit().clear().commit();
-
-
-
-
             unregisterReceiver(broadcastReceiver);
             stopService(intent);
+        }
+        else if (v == history){
+            Intent historyIntent = new Intent(this, HistoryActivity.class);
+            startActivity(historyIntent);
+        }
+        else if (v == character){
+            Intent characterIntent = new Intent(this, CharacterActivity.class);
+            startActivity(characterIntent);
         }
     }
 

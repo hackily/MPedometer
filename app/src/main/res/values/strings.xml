@@ -6,17 +6,29 @@
     <string name="action_settings">Settings</string>
     <string name="quests_button">Quests</string>
     <string name="activity_quests">Quests</string>
+    <string name="activity_character">Character</string>
+    <string name="activity_history">History</string>
+
+
     <string name="adder">+</string>
     <string name="count">0</string>
-    <string name="txtDateTime">0</string>
     <string name="txtCounter">0</string>
     <string name="quest_select">Select quest</string>
     <string name="quest_title">Generate quest</string>
-
     <string name="clear">Clear</string>
-<!--    <string name="bind">Bind</string>
-    <string name="unbind">Unbind</string>
-    <string name="getServiceStatus">Get Service Status</string>-->
+
+    <string name="characterText">Character</string>
+    <string name="Health">HP</string>
+    <string name="Mana">MP</string>
+    <string name="Strength">Str</string>
+    <string name="Dexterity">Dex</string>
+    <string name="Intelligence">Int</string>
+    <string name="Vitality">Vit</string>
+
+    <string name="History">History</string>
+    <string name="Weekly">Weekly</string>
+
+
     <!--    <string name="quests_textview">Hello Text!</string>-->
 
 

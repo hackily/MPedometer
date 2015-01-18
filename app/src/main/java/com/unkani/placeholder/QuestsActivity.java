@@ -20,7 +20,7 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
     ArrayAdapter mArrayAdapter;
     ArrayList questList;
     Button generator;
-    Button selecter;
+    Button selector;
 
 
 
@@ -35,11 +35,11 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
         questsTextView = (TextView) findViewById(R.id.quests_textview);
         String poop = this.getIntent().getExtras().getString("test", "1");
         Toast.makeText(this, poop, Toast.LENGTH_LONG).show();
-        selecter = (Button) findViewById(R.id.quest_selecter);
-        selecter.setOnClickListener(this);
+        selector = (Button) findViewById(R.id.quest_selecter);
+        selector.setOnClickListener(this);
         generator= (Button) findViewById(R.id.quest_generator);
         generator.setOnClickListener(this);
-        selecter.setEnabled(false);
+        selector.setEnabled(false);
         String aMonsters[]={"Bat","Troll","Ogre","Assassin"};
 
 
@@ -52,7 +52,7 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v==generator) {
         }
-    else if (v==selecter) {
+    else if (v== selector) {
 
         }
     }
