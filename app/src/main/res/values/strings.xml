@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Application</string>
+    <string name="textview">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="quests_button">Quests</string>
+    <string name="activity_quests">Quests</string>
+    <string name="adder">+</string>
+    <string name="count">0</string>
+    <string name="txtDateTime">0</string>
+    <string name="txtCounter">0</string>
+    <string name="quest_select">Select quest</string>
+    <string name="quest_title">Generate quest</string>
+
+    <string name="clear">Clear</string>
+<!--    <string name="bind">Bind</string>
+    <string name="unbind">Unbind</string>
+    <string name="getServiceStatus">Get Service Status</string>-->
+    <!--    <string name="quests_textview">Hello Text!</string>-->
+
+
+
+</resources>
