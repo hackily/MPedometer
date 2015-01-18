@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.text.DateFormat;
 
@@ -38,7 +37,6 @@ public class CounterService extends Service{
     };
 
     private void DisplayLoggingInfo(){
-        Log.d(TAG, "entered DisplayLoggingInfo");
         intent.putExtra("time", DateFormat.getDateInstance());
         intent.putExtra("counter", String.valueOf(counter=counter+5));
         sendBroadcast(intent);

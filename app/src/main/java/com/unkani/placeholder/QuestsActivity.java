@@ -2,6 +2,7 @@ package com.unkani.placeholder;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -10,14 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class QuestsActivity extends ActionBarActivity implements View.OnClickListener {
-    TextView questsTextView;
+    TextView quests_textview;
     ListView mainListView;
     ArrayAdapter mArrayAdapter;
     ArrayList<String> questList = new ArrayList<String>(4);
@@ -28,6 +30,14 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
     int position;
 
 
+    private static final String QUESTPREFS = "prefs";
+    private static final String COUNTDOWN = "0";
+    SharedPreferences mSharedPreferences;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +46,12 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
         //Enable "up" button for navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        questsTextView = (TextView) findViewById(R.id.quests_textview);
-        String poop = this.getIntent().getExtras().getString("test", "1");
-        Toast.makeText(this, poop, Toast.LENGTH_LONG).show();
+  /*      questsTextView = (TextView) findViewById(R.id.quests_textview);
+
+        String name = mSharedPreferences.getString(COUNTDOWN, "");
+        if(Integer.toString(name)  0 )*/
+
+        quests_textview = (TextView) findViewById(R.id.quests_textview);
         selector = (Button) findViewById(R.id.quest_selecter);
         selector.setOnClickListener(this);
         generator= (Button) findViewById(R.id.quest_generator);
@@ -84,7 +97,28 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
                     .setMessage("Are you sure you want to fight a "+ questList.get(mainListView.getCheckedItemPosition()) + "?")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            // ok button
+                            String read = questList.get(mainListView.getCheckedItemPosition());
+                            Pattern p = Pattern.compile("(\\\\d+)");
+                            Matcher m = p.matcher(read);
+                            quests_textview.setText(read);
+
+                            int questGoal = 0;
+                            if (m.find()) {
+                                questGoal = Integer.valueOf(m.group(1))*500;
+                                quests_textview.setText(questGoal);
+                            }
+
+
+                            mSharedPreferences = getSharedPreferences(QUESTPREFS, MODE_PRIVATE);
+                            String monster = mSharedPreferences.getString(COUNTDOWN, "-1");
+                            if (Integer.valueOf(monster) < 0) {
+                                SharedPreferences.Editor e = mSharedPreferences.edit();
+                                e.putString(COUNTDOWN, Integer.toString(questGoal));
+                                e.commit();
+                            }
+
+
+
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
