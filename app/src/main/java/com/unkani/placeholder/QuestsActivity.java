@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by unkani on 1/17/2015.
@@ -21,6 +22,8 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
     ArrayList questList;
     Button generator;
     Button selecter;
+    Random picker;
+    String [] aMonsters;
 
 
 
@@ -40,20 +43,24 @@ public class QuestsActivity extends ActionBarActivity implements View.OnClickLis
         generator= (Button) findViewById(R.id.quest_generator);
         generator.setOnClickListener(this);
         selecter.setEnabled(false);
-        String aMonsters[]={"Bat","Troll","Ogre","Assassin"};
-
-
-// get a branch kk
-
-
+        aMonsters=new String[4];
+        aMonsters[0]=new String("Bat");
+        aMonsters[1]=new String("Troll");
+        aMonsters[2]=new String("Ogre");
+        aMonsters[3]=new String("Assassin");
+        mainListView= (ListView) findViewById(R.id.quest_lister);
+        mArrayAdapter= new ArrayAdapter(this, android.R.layout.simple_list_item_1, questList);
+        mainListView.setAdapter(mArrayAdapter);
+        picker= new Random();
 
 
     }
     public void onClick(View v) {
         if (v==generator) {
+            questList.add(aMonsters[picker.nextInt(4)]);
+            mArrayAdapter.notifyDataSetChanged();
         }
     else if (v==selecter) {
-
         }
     }
 
