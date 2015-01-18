@@ -18,6 +18,7 @@
     <string name="clear">Clear</string>
 
     <string name="characterText">Character</string>
+    <string name="Level">Level</string>
     <string name="Health">HP</string>
     <string name="Mana">MP</string>
     <string name="Strength">Str</string>

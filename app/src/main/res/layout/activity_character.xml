@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
     <TextView
         android:id="@+id/characterText"
         android:layout_width="wrap_content"
@@ -12,6 +15,16 @@
         android:text="@string/characterText"
         android:textSize="12pt"
     />
+    <TextView
+        android:id="@+id/Level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Level"
+        android:textSize="12pt"
+        />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -20,20 +33,23 @@
             android:id="@+id/Health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
+            android:layout_gravity="bottom"
             android:text="@string/Health"
             android:textSize="12pt"
         />
         <TextView
             android:id="@+id/Mana"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
+            android:layout_gravity="right"
             android:text="@string/Mana"
             android:textSize="12pt"
         />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,6 +99,10 @@
             android:textSize="12pt"
             />
     </LinearLayout>
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher" />
 
 </LinearLayout>

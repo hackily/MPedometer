@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 public void onClick(DialogInterface dialog, int whichButton) {
                     String inputName = input.getText().toString();
                     //Initializes the player character
-                    playerCharacter.populateStats(inputName, 20, 10, 5, 5, 5, 5, "", "Hero");
+                    playerCharacter.populateStats(inputName, 1, 20, 10, 5, 5, 5, 5, "", "Hero");
 
 
                     Gson gson = new Gson();

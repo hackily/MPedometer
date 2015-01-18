@@ -1,8 +1,9 @@
 package com.unkani.placeholder;
 
 public class CharStat {
-    public String Name = "default";
-    public int HP = 0;
+    private String Name = "default";
+    private int Lvl = 1;
+    private int HP = 0;
     private int MP = 0;
     private int Str = 0;
     private int Int = 0;
@@ -15,12 +16,13 @@ public class CharStat {
 
     @Override
     public String toString() {
-        return "CharStat [Name=" + Name + ", HP=" + HP + ", MP=" + MP + ", Str=" + Str + ", Int=" + Int + ", Dex=" + Dex +
+        return "CharStat [Name=" + Name + ", Lvl=" + Lvl + ", HP=" + HP + ", MP=" + MP + ", Str=" + Str + ", Int=" + Int + ", Dex=" + Dex +
                 ", Vit=" + Vit + ", Element =" + Element + ", Flavor=" + Flavor + "]";
     }
 
-    public void populateStats(String N, int Health, int Mana, int Strength, int Intelligence, int Dexterity, int Vitality, String Elemental, String FlavorText) {
+    public void populateStats(String N, int L, int Health, int Mana, int Strength, int Intelligence, int Dexterity, int Vitality, String Elemental, String FlavorText) {
         Name = N;
+        Lvl = L;
         HP = Health;
         MP = Mana;
         Str = Strength;
@@ -34,6 +36,9 @@ public class CharStat {
 
     public String getName(){
         return Name;
+    }
+    public int getLvl(){
+        return Lvl;
     }
     public int getHP(){
         return HP;
