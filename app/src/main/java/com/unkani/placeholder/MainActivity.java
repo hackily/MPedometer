@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -30,20 +32,26 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     String poop = "8";
     private static final String PREFS = "prefs";
-    private static final String CHAR_NAME = "";
+    private static final String PLAYERCHARACTER = "";
     private static final String COUNT = "0";
-
 
     SharedPreferences mSharedPreferences;
 
     private int addCount = 0;
     private String counter = "0";
 
-
     private static final String TAG = "CounterService";
-    private Intent intent;
+    private Intent questsIntent;
 
-    //int counter = 0;
+    private CharStat playerCharacter = new CharStat();
+
+
+/*    To Retreive:
+
+    Gson gson = new Gson();
+    String json = mPrefs.getString("MyObject", "");
+    MyObject obj = gson.fromJson(json, MyObject.class);*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +76,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
 
         displayWelcome();
-        intent = new Intent(this, CounterService.class);
+        questsIntent = new Intent(this, CounterService.class);
 
     }
 
@@ -84,7 +92,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == mainButton) {
             Intent questsIntent = new Intent(this, QuestsActivity.class);
-            //Pass information into the intent through this!
+            //Pass information into the questsIntent through this!
             questsIntent.putExtra("test", poop);
             startActivity(questsIntent);
         }
@@ -95,7 +103,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         else if (v == clear){
             getApplicationContext().getSharedPreferences(PREFS, 0).edit().clear().commit();
             unregisterReceiver(broadcastReceiver);
-            stopService(intent);
+            stopService(questsIntent);
         }
         else if (v == history){
             Intent historyIntent = new Intent(this, HistoryActivity.class);
@@ -103,25 +111,29 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
         else if (v == character){
             Intent characterIntent = new Intent(this, CharacterActivity.class);
+            String name = mSharedPreferences.getString(PLAYERCHARACTER, "");
+            characterIntent.putExtra("charStats", name);
+
             startActivity(characterIntent);
         }
     }
 
     public void displayWelcome() {
         mSharedPreferences = getSharedPreferences(PREFS, MODE_PRIVATE);
-        //Clears the preferences file.
-        //mSharedPreferences.edit().clear().commit();
-
-
         //Read data, or empty if nothing found.
-        String name = mSharedPreferences.getString(CHAR_NAME, "");
+        String name = mSharedPreferences.getString(PLAYERCHARACTER, "");
+        //Prepares the Gson object to convert the JSON string into the CharStat object
+        Gson gson = new Gson();
+        CharStat PC = gson.fromJson(name, CharStat.class);
+
         if (name.length() > 0) {
-            Toast.makeText(this, "Welcome back, " + name + "!", Toast.LENGTH_LONG).show();
-        } else {
+            Toast.makeText(this, "Welcome back, " + PC.getName().toString() + "!", Toast.LENGTH_LONG).show();
+        }
+        else {
             //Creates Alert box
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("Hello!");
-            alert.setMessage("Looks like this is your first time using this app. What's your name?"+name);
+            alert.setMessage("Looks like this is your first time using this app. What's your name?");
             //EditText to enter name.
             final EditText input = new EditText(this);
             alert.setView(input);
@@ -130,11 +142,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 //Method for OK button
                 public void onClick(DialogInterface dialog, int whichButton) {
                     String inputName = input.getText().toString();
+                    //Initializes the player character
+                    playerCharacter.populateStats(inputName, 20, 10, 5, 5, 5, 5, "", "Hero");
+
+
+                    Gson gson = new Gson();
+                    String json = gson.toJson(playerCharacter);
                     SharedPreferences.Editor e = mSharedPreferences.edit();
-                    e.putString(CHAR_NAME, inputName);
+                    e.putString(PLAYERCHARACTER, json);
                     e.commit();
                     //Welcome
-                    Toast.makeText(getApplicationContext(), "Welcome, " + inputName,
+                    Toast.makeText(getApplicationContext(), "Welcome, " + playerCharacter.getName(),
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -156,7 +174,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onResume(){
         super.onResume();
-        startService(intent);
+        startService(questsIntent);
         registerReceiver(broadcastReceiver, new IntentFilter(CounterService.BROADCAST_ACTION));
     }
     @Override
@@ -191,7 +209,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         counter = Integer.toString(Integer.valueOf(counter)+Integer.valueOf(intent.getStringExtra("counter")));
 
-//        String time = intent.getStringExtra("time");
+//        String time = questsIntent.getStringExtra("time");
         Log.d(TAG, counter);
 //        Log.d(TAG, time);
 //        TextView txtDateTime = (TextView) findViewById(R.id.txtDateTime);
@@ -199,7 +217,4 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 //        txtDateTime.setText(time);
         txtCounter.setText("Number of steps: " + counter);
     }
-
-
-
 }
